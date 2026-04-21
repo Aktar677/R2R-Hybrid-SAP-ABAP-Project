@@ -1,16 +1,19 @@
 # 📊 Record-to-Report (R2R) — Month-End / Year-End Financial Close
 
-**Capstone Project | SAP ABAP Batch**  
-**Author:** [Your Name] | **Roll No:** [Your Roll No] | **Batch/Program:** SAP ABAP
+**Capstone Project | SAP ABAP Batch**
+**Author:** Your Name
+**Roll No:** Your Roll Number
+**Program:** SAP ABAP
 
 ---
 
 ## 🎯 Project Overview
 
-This project automates the **Record-to-Report (R2R)** financial close process — the end-to-end workflow that finance teams execute at every month-end and year-end to close the books and generate financial statements.
+This project automates the **Record-to-Report (R2R)** financial close process — the complete workflow used by finance teams during month-end and year-end closing.
 
 ### Problem Statement
-Manual financial close processes are time-consuming, error-prone, and lack real-time visibility. Finance teams spend days reconciling accounts, validating journal entries, and generating reports — all manually. This project builds a complete automated R2R system.
+
+Manual financial close processes are time-consuming, error-prone, and lack real-time visibility. Finance teams spend significant time reconciling accounts, validating journal entries, and preparing reports manually. This project provides an automated solution.
 
 ---
 
@@ -26,17 +29,17 @@ Manual financial close processes are time-consuming, error-prone, and lack real-
 ├─────────────────────────┼────────────────────────────────────────┤
 │  LAYER 2 (SIMULATION)   │  Python / Streamlit                    │
 │  src/simulation/        │  Visual demo with sample data          │
-│                         │  For evaluation/presentation only      │
+│                         │  For presentation and evaluation       │
 └─────────────────────────┴────────────────────────────────────────┘
 ```
 
-> **Note:** The Python simulation (Layer 2) exists purely for visual demonstration. The actual production implementation is the ABAP code (Layer 1) that runs in the SAP FI module.
+> **Note:** The Python simulation layer is used only for demonstration. The actual implementation is done using SAP ABAP programs.
 
 ---
 
 ## 📁 Project Structure
 
-```
+```bash
 R2R_PROJECT/
 ├── data/
 │   └── r2r_data.json
@@ -62,7 +65,6 @@ R2R_PROJECT/
 │       └── app.py
 ├── README.md
 └── requirements.txt
-
 ```
 
 ---
@@ -71,93 +73,106 @@ R2R_PROJECT/
 
 ### T-Codes & Programs
 
-| T-Code | Program | Description | Key Tables |
-|--------|---------|-------------|-----------|
-| `ZR2R_MAIN` | ZFIR001 | R2R Dashboard | BKPF, BSEG, FAGLFLEXT |
-| `ZR2R_TB` | ZFIR002 | Trial Balance | FAGLFLEXT, SKA1, SKB1 |
-| `ZR2R_RC` | ZFIR004 | Reconciliation | BSIS, BSAS |
-| `ZR2R_CL` | ZFIR_CLOSE_TRACKER | Close Checklist | ZCLOSE_CHECKLIST (Z-table) |
-
-### SAP Tables Used
-
-| Table | Description |
-|-------|-------------|
-| `BKPF` | Accounting Document Header |
-| `BSEG` | Accounting Document Line Items |
-| `FAGLFLEXT` | New G/L Account Totals |
-| `SKA1` | G/L Account Master (Chart of Accounts) |
-| `SKB1` | G/L Account Master (Company Code) |
-| `BSIS` | Open G/L Line Items |
-| `BSAS` | Cleared G/L Line Items |
-| `T001` | Company Codes |
-| `ZCLOSE_CHECKLIST` | Custom Z-table for close tasks |
-
-### Deploying in SAP
-
-1. Open **SE38** → Create each program (ZFIR001, ZFIR002 etc.)
-2. Copy code from `src/abap/*.abap` files
-3. Create **Z-table** `ZCLOSE_CHECKLIST` in **SE11** (schema in ZFIR_CLOSE_TRACKER.abap)
-4. Register T-Codes in **SE93**
-5. Create message class `ZFIR_MSG` in **SE91**
-6. Activate and test with company code 1000, period 03, year 2026
+| T-Code    | Program            | Description     | Tables Used           |
+| --------- | ------------------ | --------------- | --------------------- |
+| ZR2R_MAIN | ZFIR001            | R2R Dashboard   | BKPF, BSEG, FAGLFLEXT |
+| ZR2R_TB   | ZFIR002            | Trial Balance   | FAGLFLEXT, SKA1, SKB1 |
+| ZR2R_RC   | ZFIR004            | Reconciliation  | BSIS, BSAS            |
+| ZR2R_CL   | ZFIR_CLOSE_TRACKER | Close Checklist | ZCLOSE_CHECKLIST      |
 
 ---
 
-## 🐍 Python Simulation (Demo Layer)
+### SAP Tables Used
 
-### Prerequisites
+| Table            | Description                    |
+| ---------------- | ------------------------------ |
+| BKPF             | Accounting Document Header     |
+| BSEG             | Accounting Document Line Items |
+| FAGLFLEXT        | G/L Account Totals             |
+| SKA1             | G/L Master (Chart of Accounts) |
+| SKB1             | G/L Master (Company Code)      |
+| BSIS             | Open Items                     |
+| BSAS             | Cleared Items                  |
+| T001             | Company Code                   |
+| ZCLOSE_CHECKLIST | Custom Table                   |
+
+---
+
+### Deployment Steps (SAP)
+
+1. Go to **SE38** and create programs
+2. Paste code from `src/abap/`
+3. Create table `ZCLOSE_CHECKLIST` in **SE11**
+4. Create T-Codes in **SE93**
+5. Activate and test
+
+---
+
+## 🐍 Python Simulation
+
+### Install Dependencies
+
 ```bash
-pip install streamlit plotly pandas
+pip install streamlit pandas plotly
 ```
 
-### Run
+---
+
+### Run Application
+
 ```bash
 cd src/simulation
 streamlit run app.py
 ```
 
-The app reads from `data/r2r_data.json` — sample data modelled on real SAP FI structures.
-
 ---
 
-## 📊 R2R Process Covered
+## 📊 R2R Process Flow
 
 ```
-Data Collection → Journal Entry Validation → Account Reconciliation
+Data Collection → Journal Validation → Reconciliation
       ↓
-Trial Balance Generation → Financial Statements → Close Sign-off
+Trial Balance → Financial Statements → Close
 ```
 
-### Modules
-1. **Journal Entry Validation** — Debit = Credit check on every document (BKPF+BSEG)
-2. **Trial Balance** — Period-wise G/L balances from FAGLFLEXT with totals check
-3. **Bank Reconciliation** — Open items (BSIS) vs Cleared items (BSAS) with aging
-4. **Financial Statements** — P&L (Revenue - Expenses) and Balance Sheet
-5. **Close Task Tracker** — Z-table based checklist with traffic-light status
+---
+
+## 🔍 Modules Covered
+
+* Journal Entry Validation (Debit = Credit)
+* Trial Balance Generation
+* Account Reconciliation
+* Financial Statements (P&L + Balance Sheet)
+* Close Checklist Tracking
 
 ---
 
-## 🌟 Unique Features
+## 🌟 Key Features
 
-- ✅ Real SAP FI tables (BKPF, BSEG, FAGLFLEXT, BSIS, BSAS) — not simulated
-- ✅ Debit = Credit validation per accounting document
-- ✅ Aging analysis for open items (30/60/90/180+ day buckets)
-- ✅ Traffic-light ALV coloring (Green/Yellow/Red per task status)
-- ✅ Custom Z-table `ZCLOSE_CHECKLIST` for period close management
-- ✅ OO ALV using `CL_SALV_TABLE` (modern approach)
-- ✅ Dynamic period summation using field symbols
+* Real SAP FI Tables used
+* Debit-Credit validation logic
+* Aging analysis (30/60/90/180 days)
+* Traffic-light indicators
+* OO ALV reporting
+* Custom Z-table implementation
 
 ---
 
-## 🔮 Future Improvements
+## 🔮 Future Scope
 
-- Workflow integration (SAP Business Workplace) for task approvals
-- Email notifications on overdue close tasks
-- Integration with SAP Fiori for mobile close tracking
-- AI-based anomaly detection on journal entries
-- Automated period lock (OB52) trigger on 100% task completion
+* SAP Fiori integration
+* Workflow automation
+* Email alerts
+* AI anomaly detection
+
+---
+
+## 📌 Conclusion
+
+This project demonstrates automation of financial close processes using a hybrid approach combining SAP ABAP and Python simulation. It improves efficiency, accuracy, and visibility.
 
 ---
 
 ## 📄 License
-Academic capstone project — not for commercial use.
+
+Academic project — for educational purposes only.
