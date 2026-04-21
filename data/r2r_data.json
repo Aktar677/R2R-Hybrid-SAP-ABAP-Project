@@ -1,0 +1,92 @@
+{
+  "kpis": {
+    "total_entries": 1842,
+    "entries_delta": 124,
+    "total_debits": 8450.75,
+    "total_credits": 8450.75,
+    "unreconciled": 23,
+    "close_pct": 72
+  },
+  "close_checklist": [
+    {"task_id":"T001","task_description":"Post all vendor invoices (AP sub-ledger)","owner":"Finance Team","due_date":"2026-03-28","status":"C","completed_by":"RAVI.K"},
+    {"task_id":"T002","task_description":"Post all customer receipts (AR sub-ledger)","owner":"AR Team","due_date":"2026-03-28","status":"C","completed_by":"PRIYA.M"},
+    {"task_id":"T003","task_description":"Run depreciation (AFAB)","owner":"Fixed Assets","due_date":"2026-03-29","status":"C","completed_by":"SURESH.N"},
+    {"task_id":"T004","task_description":"Post accrual journal entries","owner":"Finance Team","due_date":"2026-03-30","status":"P","completed_by":""},
+    {"task_id":"T005","task_description":"Bank reconciliation — all accounts","owner":"Treasury","due_date":"2026-03-30","status":"P","completed_by":""},
+    {"task_id":"T006","task_description":"Intercompany reconciliation","owner":"Finance Team","due_date":"2026-03-31","status":"O","completed_by":""},
+    {"task_id":"T007","task_description":"Foreign currency revaluation (FAGL_FC_VAL)","owner":"Finance Team","due_date":"2026-03-31","status":"O","completed_by":""},
+    {"task_id":"T008","task_description":"GR/IR clearing (F.13)","owner":"MM Team","due_date":"2026-03-31","status":"C","completed_by":"AMIT.S"},
+    {"task_id":"T009","task_description":"Generate Trial Balance — review variances","owner":"Controller","due_date":"2026-04-01","status":"P","completed_by":""},
+    {"task_id":"T010","task_description":"Period lock (OB52) — close FI period","owner":"Controller","due_date":"2026-04-02","status":"O","completed_by":""},
+    {"task_id":"T011","task_description":"Generate P&L and Balance Sheet","owner":"Controller","due_date":"2026-04-02","status":"O","completed_by":""},
+    {"task_id":"T012","task_description":"Management reporting package","owner":"FP&A","due_date":"2026-04-03","status":"O","completed_by":""}
+  ],
+  "trial_balance": [
+    {"account_code":"100000","account_name":"Cash & Bank","account_type":"Asset","debit":1250.50,"credit":980.25,"balance":270.25},
+    {"account_code":"110000","account_name":"Accounts Receivable","account_type":"Asset","debit":2100.00,"credit":1800.00,"balance":300.00},
+    {"account_code":"120000","account_name":"Inventory","account_type":"Asset","debit":980.00,"credit":750.00,"balance":230.00},
+    {"account_code":"130000","account_name":"Fixed Assets","account_type":"Asset","debit":3500.00,"credit":420.50,"balance":3079.50},
+    {"account_code":"200000","account_name":"Accounts Payable","account_type":"Liability","debit":650.00,"credit":1420.00,"balance":-770.00},
+    {"account_code":"210000","account_name":"Short-term Loans","account_type":"Liability","debit":100.00,"credit":800.00,"balance":-700.00},
+    {"account_code":"300000","account_name":"Share Capital","account_type":"Equity","debit":0.00,"credit":2000.00,"balance":-2000.00},
+    {"account_code":"400000","account_name":"Sales Revenue","account_type":"Revenue","debit":0.00,"credit":4200.00,"balance":-4200.00},
+    {"account_code":"410000","account_name":"Other Income","account_type":"Revenue","debit":0.00,"credit":280.00,"balance":-280.00},
+    {"account_code":"500000","account_name":"Cost of Goods Sold","account_type":"Expense","debit":2800.00,"credit":0.00,"balance":2800.00},
+    {"account_code":"510000","account_name":"Salaries & Wages","account_type":"Expense","debit":1200.00,"credit":0.00,"balance":1200.00},
+    {"account_code":"520000","account_name":"Rent & Utilities","account_type":"Expense","debit":350.00,"credit":0.00,"balance":350.00},
+    {"account_code":"530000","account_name":"Depreciation","account_type":"Expense","debit":420.50,"credit":0.00,"balance":420.50}
+  ],
+  "journal_entries": [
+    {"doc_number":"1800000001","posting_date":"2026-03-01","account":"100000","description":"Opening bank balance","debit":1250.50,"credit":1250.50},
+    {"doc_number":"1800000002","posting_date":"2026-03-05","account":"400000","description":"Revenue from customer INV-2026-001","debit":500.00,"credit":500.00},
+    {"doc_number":"1800000003","posting_date":"2026-03-08","account":"500000","description":"COGS for March batch","debit":320.00,"credit":320.00},
+    {"doc_number":"1800000004","posting_date":"2026-03-10","account":"510000","description":"Salary posting March","debit":400.00,"credit":400.00},
+    {"doc_number":"1800000005","posting_date":"2026-03-12","account":"200000","description":"Vendor invoice VI-9820","debit":150.00,"credit":150.00},
+    {"doc_number":"1800000006","posting_date":"2026-03-15","account":"400000","description":"Revenue – export sales","debit":780.00,"credit":780.00},
+    {"doc_number":"1800000007","posting_date":"2026-03-18","account":"130000","description":"Asset capitalisation – Machinery","debit":500.00,"credit":500.00},
+    {"doc_number":"1800000008","posting_date":"2026-03-20","account":"530000","description":"Depreciation run March","debit":420.50,"credit":420.50},
+    {"doc_number":"1800000009","posting_date":"2026-03-22","account":"520000","description":"Rent March – FLAGGED","debit":350.00,"credit":280.00},
+    {"doc_number":"1800000010","posting_date":"2026-03-25","account":"110000","description":"AR collection – Customer ABC","debit":900.00,"credit":900.00},
+    {"doc_number":"1800000011","posting_date":"2026-03-28","account":"410000","description":"Interest income March","debit":80.00,"credit":80.00},
+    {"doc_number":"1800000012","posting_date":"2026-03-30","account":"500000","description":"COGS – end of month accrual","debit":200.00,"credit":200.00}
+  ],
+  "reconciliation": [
+    {"doc_number":"1700000001","account":"110000","account_name":"Accounts Receivable","amount":45.50,"status":"Open","due_date":"2026-03-15","aging_days":37},
+    {"doc_number":"1700000002","account":"110000","account_name":"Accounts Receivable","amount":120.00,"status":"Open","due_date":"2026-03-10","aging_days":42},
+    {"doc_number":"1700000003","account":"200000","account_name":"Accounts Payable","amount":80.25,"status":"Open","due_date":"2026-03-20","aging_days":32},
+    {"doc_number":"1700000004","account":"200000","account_name":"Accounts Payable","amount":200.00,"status":"Open","due_date":"2026-02-28","aging_days":62},
+    {"doc_number":"1700000005","account":"100000","account_name":"Bank – Main Account","amount":15.75,"status":"Open","due_date":"2026-03-25","aging_days":27},
+    {"doc_number":"1700000006","account":"100000","account_name":"Bank – Main Account","amount":9.00,"status":"Open","due_date":"2026-01-31","aging_days":110},
+    {"doc_number":"1700000007","account":"210000","account_name":"Short-term Loan","amount":500.00,"status":"Open","due_date":"2026-01-15","aging_days":126},
+    {"doc_number":"1800000002","account":"400000","account_name":"Sales Revenue","amount":500.00,"status":"Cleared","due_date":"2026-03-05","aging_days":0},
+    {"doc_number":"1800000003","account":"500000","account_name":"COGS","amount":320.00,"status":"Cleared","due_date":"2026-03-08","aging_days":0},
+    {"doc_number":"1800000004","account":"510000","account_name":"Salaries","amount":400.00,"status":"Cleared","due_date":"2026-03-10","aging_days":0},
+    {"doc_number":"1800000005","account":"200000","account_name":"Accounts Payable","amount":150.00,"status":"Cleared","due_date":"2026-03-12","aging_days":0},
+    {"doc_number":"1800000010","account":"110000","account_name":"Accounts Receivable","amount":900.00,"status":"Cleared","due_date":"2026-03-25","aging_days":0}
+  ],
+  "financial_statements": {
+    "pl": [
+      {"label":"Sales Revenue","amount":4200.00,"category":"Revenue","is_total":false},
+      {"label":"Other Income","amount":280.00,"category":"Revenue","is_total":false},
+      {"label":"Total Revenue","amount":4480.00,"category":"Revenue","is_total":true},
+      {"label":"Cost of Goods Sold","amount":2800.00,"category":"Expense","is_total":false},
+      {"label":"Salaries & Wages","amount":1200.00,"category":"Expense","is_total":false},
+      {"label":"Rent & Utilities","amount":350.00,"category":"Expense","is_total":false},
+      {"label":"Depreciation","amount":420.50,"category":"Expense","is_total":false},
+      {"label":"Total Expenses","amount":4770.50,"category":"Expense","is_total":true}
+    ],
+    "bs": [
+      {"label":"Cash & Bank","amount":270.25,"category":"Asset","is_total":false},
+      {"label":"Accounts Receivable","amount":300.00,"category":"Asset","is_total":false},
+      {"label":"Inventory","amount":230.00,"category":"Asset","is_total":false},
+      {"label":"Fixed Assets (Net)","amount":3079.50,"category":"Asset","is_total":false},
+      {"label":"Total Assets","amount":3879.75,"category":"Asset","is_total":true},
+      {"label":"Accounts Payable","amount":770.00,"category":"Liability","is_total":false},
+      {"label":"Short-term Loans","amount":700.00,"category":"Liability","is_total":false},
+      {"label":"Total Liabilities","amount":1470.00,"category":"Liability","is_total":true},
+      {"label":"Share Capital","amount":2000.00,"category":"Equity","is_total":false},
+      {"label":"Retained Earnings","amount":409.75,"category":"Equity","is_total":false},
+      {"label":"Total Equity","amount":2409.75,"category":"Equity","is_total":true}
+    ]
+  }
+}
